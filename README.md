@@ -28,7 +28,7 @@ So basically Grafana Mimir helps us to store our Prometheus Data in an Object St
 
 <h1>What are the Pre Requisites to run Grafana Mimir?</h1>
 
-<div>
+
     <h1>First we will need a Object Storage for Mimir.</h1>
     <p>MinIO is a high-performance, S3 compatible object store</p>
 
@@ -57,6 +57,4 @@ So basically Grafana Mimir helps us to store our Prometheus Data in an Object St
     Navigate to localhost:9001 and login to minio server with 
     username:admin
     password:password
-
-</div>
 
