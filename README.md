@@ -28,7 +28,6 @@ So basically Grafana Mimir helps us to store our Prometheus Data in an Object St
 
 <h1>What are the Pre Requisites to run Grafana Mimir?</h1>
 
-
     <h1>First we will need a Object Storage for Mimir.</h1>
     <p>MinIO is a high-performance, S3 compatible object store</p>
 
@@ -36,25 +35,24 @@ So basically Grafana Mimir helps us to store our Prometheus Data in an Object St
     
     Run Powershell as an administrator and run the following commands
 
-    This Command will install the minio executable file in your C Drive
-    <div>
-        Invoke-WebRequest -Uri "https://dl.min.io/server/minio/release/windows-amd64/minio.exe" -OutFile "C:\minio.exe"
-    </div>
+1. This Command will install the minio executable file in your C Drive
+    ```bash
+    Invoke-WebRequest -Uri "https://dl.min.io/server/minio/release/windows-amd64/minio.exe" -OutFile "C:\minio.exe"
     
-    This Command will set root user for minio
-     <div>
-        setx MINIO_ROOT_USER admin
-    </div>
-    This command will set the password for above user 
-    <div>
-        setx MINIO_ROOT_USER password
-    </div>
-    This Command will start the minio Server
-    <div>
-        C:.\minio.exe server C:\Data --console-address ":9001"
-    </div>
+2. This Command will set root user for minio
+     ```bash
+    setx MINIO_ROOT_USER admin
+
+3. This command will set the password for above user 
+    ```bash
+    setx MINIO_ROOT_USER password
+    
+4. This Command will start the minio Server
+    ```bash
+    C:.\minio.exe server C:\Data --console-address ":9001"
 
     Navigate to localhost:9001 and login to minio server with 
     username:admin
     password:password
+
 
