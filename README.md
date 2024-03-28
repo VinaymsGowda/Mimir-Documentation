@@ -1,0 +1,1 @@
+<h1>Grafana Mimir Documentation</h1>
