@@ -37,22 +37,22 @@ So basically Grafana Mimir helps us to store our Prometheus Data in an Object St
     Run Powershell as an administrator and run the following commands
 
     This Command will install the minio executable file in your C Drive
-    ```bash
+    <div>
         Invoke-WebRequest -Uri "https://dl.min.io/server/minio/release/windows-amd64/minio.exe" -OutFile "C:\minio.exe"
-    ```
+    </div>
     
     This Command will set root user for minio
-     ```bash
+     <div>
         setx MINIO_ROOT_USER admin
-    ```
+    </div>
     This command will set the password for above user 
-    ```bash
+    <div>
         setx MINIO_ROOT_USER password
-    ```
+    </div>
     This Command will start the minio Server
-    ```bash
+    <div>
         C:.\minio.exe server C:\Data --console-address ":9001"
-    ```
+    </div>
 
     Navigate to localhost:9001 and login to minio server with 
     username:admin

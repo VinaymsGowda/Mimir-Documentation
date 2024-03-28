@@ -26,16 +26,16 @@ To setup Database connection to the books MicroService
 <ol>
     <li>
     1
-        ```bash
+        <div>
             cd books     # Navigate into the books folder
-         ```
+         </div>
     </li>
     <li>
     2
        Create a .env file add the following content inside it
-       ```bash
+       <div>
        mongo_url=<Connection String>/bookservice
-       ```
+       </div>
        Replace the Connection String with  the one you got from MongoDB atlas
     </li>
 </ol>
