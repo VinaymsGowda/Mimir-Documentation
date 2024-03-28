@@ -10,7 +10,7 @@
 </ol>
 
 Login to your MongoDB Atlas Account and create a cluster
-After creating a cluster Navigate to Database and click Connect 
+After creating a cluster Navigate to Database and click Connect
 1.First Enter the Database username and Password
 2.Choose a Connection Method
   Choose Driver as Nodejs 
