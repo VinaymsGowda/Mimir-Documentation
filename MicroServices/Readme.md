@@ -1,45 +1,30 @@
-<h1>Micro-Service</h1>
+# Micro-Service
 
-<p>Steps to run the micro-Service setup</p>
+Steps to run the micro-service setup.
 
-<h2>Pre-requisites</h2>
+## Pre-requisites
 
-<ol>
-<li>Nodejs</li>
-<li>MongoDB Atlas Account</li>
-</ol>
+1. Node.js
+2. MongoDB Atlas Account
 
-<p>Login to your MongoDB Atlas Account and create a cluster</p>
-<p>After creating a cluster Navigate to Database and click Connect</p>
-<p>1.First Enter the Database username and Password</p>
-<p>2.Choose a Connection Method</p>
-  <p>Choose Driver as Nodejs </p>
-<p>3. You will see a connection String below , copy it and Replace <password> with the password for the user.
-</p>
+Login to your MongoDB Atlas Account and create a cluster. After creating a cluster, navigate to the Database section and click 'Connect'.
 
-<bold>Store this connection String in a Notepad we will be using it to setup database connection  in our application.</bold>
+### Database Connection Steps:
 
-To setup Database connection to the books MicroService
+1. Enter the database username and password.
+2. Choose a connection method and select the driver as Node.js.
+3. You will see a connection string below; copy it and replace `<password>` with the password for the database user.
 
-<bold>Steps</bold>
+**Note:** Store this connection string in a notepad as we will use it to set up the database connection in our application.
 
-<ol>
-    <li>
-    1
-        <div>
-            cd books     # Navigate into the books folder
-         </div>
-    </li>
-    <li>
-    2
-       Create a .env file add the following content inside it
-       <div>
-       mongo_url=<Connection String>/bookservice
-       </div>
-       Replace the Connection String with  the one you got from MongoDB atlas
-    </li>
-</ol>
+## Setting Up Database Connection for the Books MicroService
 
-<h2>Now The database connection is done</h2>
+**Steps:**
 
+1. Navigate into the books folder:
+   ```bash
+   cd books
 
+2. Create a .env file and add the following content inside it
+mongo_url=<Connection String>/bookservice
+Replace <Connection String> with the one you got from MongoDB Atlas.
