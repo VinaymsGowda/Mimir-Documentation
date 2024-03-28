@@ -26,5 +26,5 @@ Login to your MongoDB Atlas Account and create a cluster. After creating a clust
    cd books
 
 2. Create a .env file and add the following content inside it
-mongo_url=<Connection String>/bookservice
-Replace <Connection String> with the one you got from MongoDB Atlas.
+mongo_url=connection string /bookservice
+Replace connection string  with the one you got from MongoDB Atlas.
