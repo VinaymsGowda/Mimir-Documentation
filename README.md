@@ -151,11 +151,69 @@ In this Documentation i will be explaining on how to setup Mimir instances to wr
 
 ```bash
 docker-compose up -d
+```
 
-# Tell about cadvisor and the micro-services it will be monitoring
-# Tell about Node-exporter and the metrics it is collecting
-# Write about going to prometheus 9090 and see all setups (targets,promql query)
-# Tell about running grafana on port 3000 
+
+
+After Running the Above Command ,Open Command Prompt and Run the Below Command OR open docker Desktop and see multi-container stack running
+```bash
+docker ps #This Command will list all the running containers
+```
+
+## Now that you have all the containers up and running.
+
+Navigate to IP_Address:8081 on your browser
+You should see Cadvisor Home Page .
+<img src="./images/cadvisorhome.png"/> 
+
+- Navigate to docker containers and there you can see a list of sub-containers that cadvisor is monitoring
+- Cadvisor provides CPU Usage ,Memory Usage and other stats of the sub-containers.
+
+
+
+# Node-exporter 
+Node Exporter is a component of the Prometheus monitoring system that collects and exposes a wide range of hardware- and OS-level metrics from systems.
+1. Navigate to  http://IP_ADDRESS:9100/metrics which contains hardware and OS-level metrics from systems
+
+# Prometheus
+
+Navigate to IP_Address:9090 where you can see prometheus Home Page
+
+You can write queries here to retreive data 
+--> For example you can use the below query to see targets from which prometheus is scrapping data from
+```bash
+up
+```
+
+# Grafana 
+
+Now that we know we are scrapping Metrics Data using Prometheus we have to find a way to visualize it
+Grafana comes into play here as a tool for Visualization.
+We can see data in form of a table,a time series Graph,a Counter and much more.
+Navigate to "IP_ADDRESS:3000"
+
+Login with 
+Username : admin 
+Password : admin (default creds)
+1. So to Visualize the data on Grafana First we need to add a data source
+--> Click on Add data source --> Select Prometheus --> Give appropriate details (URL= "IP_ADDRESS:9090") and click Save and Test.You must see the data source is successfully added.
+2. Click on Create your first Dashboard --> Add Visualization --> Select Data Source as prometheus 
+Run the below query
+```bash
+container_cpu_usage_seconds_total{job="cadvisor", name="books-services"}
+```
+This will show us cpu usage of our books-service container.
+
+3. Similarly you can also import in-built dashboards into Grafana. These dashboards provide a wide range of Queries and visualizations to it.
+
+- Click on Dashboards and click new Dashboard,In the Next Interface Choose import Dashboard and provide the below id in the second text box 
+```bash
+1860
+```
+
+- Then Choose Data source as prometheus from dropdown and Click Import.
+- After Doing this you will get inbuild node exporter dashboard which will complete information about your system metrics data with graphs and numbers.
+
 # write about going to mimir admin at 9009 and tell that read and write requests are balanced 
 # tell about read path and write path
 # tell about ingestors
