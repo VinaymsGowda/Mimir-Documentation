@@ -17,6 +17,8 @@ Login to your MongoDB Atlas Account and create a cluster. After creating a clust
 
 **Note:** Store this connection string in a notepad as we will use it to set up the database connection in our application.
 
+THe Connection String will look like this "mongodb+srv://'<username>':'<password>'@'<clusterName>'.i30sge8.mongodb.net"
+
 ## Setting Up Database Connection for the Books MicroService
 
 **Steps:**
@@ -26,5 +28,13 @@ Login to your MongoDB Atlas Account and create a cluster. After creating a clust
    cd books
 
 2. Create a .env file and add the following content inside it
-mongo_url=connection string /bookservice
+mongo_url=connection string/bookservice
 Replace connection string  with the one you got from MongoDB Atlas.
+
+Similarly follow the same steps to setup the Database connection for Customers and Orders Service by navigating to Customers and Orders folder respectfully
+
+The mongo_url inside env file will be
+mongo_url=connection string/customerservice for Customer Service .env file
+mongo_url=connection string/orderservice   for  Order Service .env File
+
+<p>You are all set Navigate back to root Directory of this repo and continue with the setup</p>
