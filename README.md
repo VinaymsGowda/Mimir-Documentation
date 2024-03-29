@@ -14,7 +14,7 @@ In this Repository i am using Grafana Mimir to Store Data in Minio Object Storag
 So basically Grafana Mimir helps us to store our Prometheus Data in an Object Store .
 
 <bold>Architecture of Grafana Mimir to write data to Object store</bold>
-<img src:"./images/tutorial-architecture.png"/>
+<img src="./images/tutorial-architecture.png"/>
 
 <h1>The Above Diagram Explain this</h1>
 
@@ -151,3 +151,11 @@ In this Documentation i will be explaining on how to setup Mimir instances to wr
 
 ```bash
 docker-compose up -d
+
+# Tell about cadvisor and the micro-services it will be monitoring
+# Tell about Node-exporter and the metrics it is collecting
+# Write about going to prometheus 9090 and see all setups (targets,promql query)
+# Tell about running grafana on port 3000 
+# write about going to mimir admin at 9009 and tell that read and write requests are balanced 
+# tell about read path and write path
+# tell about ingestors
