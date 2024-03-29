@@ -14,7 +14,7 @@ In this Repository i am using Grafana Mimir to Store Data in Minio Object Storag
 So basically Grafana Mimir helps us to store our Prometheus Data in an Object Store .
 
 <bold>Architecture of Grafana Mimir to write data to Object store</bold>
-<img src="./images/tutorial-architecture.png"/>
+<img src:"./images/tutorial-architecture.png"/>
 
 <h1>The Above Diagram Explain this</h1>
 
@@ -67,8 +67,8 @@ In this Documentation i will be explaining on how to setup Mimir instances to wr
 2. Now that you have the Micro-Service Setup with appropriate details we will start with our docker compose file.
 
 3. We will be using the following images  from Docker Hub :
-    # Grafana = grafana/grafana Running at Port 3000
-       Grafana is an open-source platform for monitoring and observability. It allows you to query, visualize, alert on, and understand your metrics no matter where they are stored. With Grafana, you can create, explore, and share dashboards with your team to foster a data-driven culture.
+    # Grafana : grafana/grafana Running at Port 3000
+    Grafana is an open-source platform for monitoring and observability. It allows you to query, visualize, alert on, and understand your metrics no matter where they are stored. With Grafana, you can create, explore, and share dashboards with your team to foster a data-driven culture.
 
 
     ### Features:
@@ -80,7 +80,7 @@ In this Documentation i will be explaining on how to setup Mimir instances to wr
 
     Grafana supports a multitude of data sources, including Prometheus, Elasticsearch, and many more, making it a versatile tool for any data-driven team.
 
-    # prometheus = prom/prometheus  Running at Port 9090
+    # prometheus : prom/prometheus  Running at Port 9090
 
      Prometheus collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts if certain conditions are observed.
 
@@ -92,7 +92,7 @@ In this Documentation i will be explaining on how to setup Mimir instances to wr
 
     Prometheus is particularly well-suited for collecting time-series data in a microservices architecture.
    
-    # cadvisor = gcr.io/cadvisor/cadvisor:latest Running at Port 8081
+    # cadvisor : gcr.io/cadvisor/cadvisor:latest Running at Port 8081
 
     ## cAdvisor (Container Advisor)
 
@@ -106,7 +106,7 @@ In this Documentation i will be explaining on how to setup Mimir instances to wr
 
     cAdvisor is designed to monitor the whole machine and is particularly useful in a microservices architecture where containerization is prevalent.
 
-    # redis = redis:latest 
+    # redis : redis:latest 
 
     The `redis:latest` Docker image is the official Redis server image that provides an in-memory data structure store, used as a database, cache, and message broker. This image is commonly used in conjunction with monitoring tools like cAdvisor to store container metrics efficiently.
 
@@ -114,7 +114,7 @@ In this Documentation i will be explaining on how to setup Mimir instances to wr
     - **In-Memory Storage**: Offers high-performance data storage and retrieval.
     - **Persistence**: Supports various persistence options for durability.
 
-    # Node-exporter = prom/node-exporter:latest Running at Port 9100
+    # Node-exporter : prom/node-exporter:latest Running at Port 9100
 
     The `prom/node-exporter:latest` Docker image provides the latest version of the Node Exporter, which is a powerful tool for monitoring system-level metrics on systems. It's designed to collect a wide variety of hardware- and OS-level metrics, making it an essential part of any Prometheus monitoring setup.
 
@@ -122,7 +122,7 @@ In this Documentation i will be explaining on how to setup Mimir instances to wr
     - **Comprehensive Metrics**: Collects detailed system metrics including CPU, memory, disk, and network utilization.
     - **Prometheus Integration**: Seamlessly integrates with Prometheus for efficient monitoring and alerting.
 
-    # mimir = grafana/mimir:latest
+    # mimir : grafana/mimir:latest
 
     A Mimir instance refers to a single deployment of Grafana Mimir, which is designed for long-term storage and high-availability monitoring of Prometheus metrics. It's built to handle large-scale data and provides a robust solution for time-series data management.
 
@@ -130,10 +130,10 @@ In this Documentation i will be explaining on how to setup Mimir instances to wr
     - **Scalable**: Can process and store vast amounts of metrics efficiently.
     - **Durable**: Utilizes object storage for reliable, long-term retention of data.
 
-    # MinIO = minio/minio Running at Port 9001
+    # MinIO : minio/minio Running at Port 9001
 
-       MinIO is an open-source object storage service that provides high-performance, S3 compatible storage.
-       Here in this Documentation we will be using Minio Object Storage to store Metrics Data.
+    MinIO is an open-source object storage service that provides high-performance, S3 compatible storage.
+    Here in this Documentation we will be using Minio Object Storage to store Metrics Data.
 
     ### Key Features:
     - **High Performance**: Optimized for speed with a minimalistic design.
@@ -151,6 +151,3 @@ In this Documentation i will be explaining on how to setup Mimir instances to wr
 
 ```bash
 docker-compose up -d
-
-
-
