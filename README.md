@@ -213,7 +213,7 @@ This will show us cpu usage of our books-service container.
 
 - Then Choose Data source as prometheus from dropdown and Click Import.
 - After Doing this you will get inbuild node exporter dashboard which will complete information about your system metrics data with graphs and numbers.
-
+     klk
 # write about going to mimir admin at 9009 and tell that read and write requests are balanced 
 # tell about read path and write path
 # tell about ingestors
