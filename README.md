@@ -335,7 +335,7 @@ container_memory_usage_bytes{name="books-services", job="cadvisor"} # To show me
 container_cpu_usage_seconds_total{job="cadvisor", name="books-services"} # CPU Usage of our book-service
 ```
 
-Similarly you can create dashboards  for other services too. 
+Similarly you can create dashboards for other services too. 
 
 # To view Cadvisor  Dashboard
 
@@ -358,7 +358,24 @@ Scroll down and Click on Add Query and add the below query
 - sum(rate(container_network_transmit_bytes_total{id="/"}[5m])) by (id)
 ```
 Later Click on Run queries you will see the  Network Traffic graph.
+Further you can explore the metrics data of cadvisor by going to ip_address:8081/metrics and query accordingly on this data on Grafana.
 
+# Querying Mimir Instances
+
+Create a new Dashboard , Add data source as Mimir and then run the below query :
+
+```bash
+cortex_request_duration_seconds_bucket{job="mimir"} # returns a set of time series data that represent the distribution of request durations for the job labeled “mimir”
+```
+
+Similarly Add the following queries and visualize them on Grafana
+```bash
+sum(cortex_request_duration_seconds_bucket{job="mimir",method="GET"}) # returns the total number of read requests made by mimir
+sum(cortex_request_duration_seconds_bucket{job="mimir",method="POST"}) # returns total number write requests done by mimir
+counter_memberlist_msg_alive{job="mimir"} # This Query is tracking the number of “alive” mimir instances.
+```
+
+Further you can explore the metrics data of mimir by going to ip_address:9009/metrics and query accordingly on this data on Grafana.
 
 This GitHub Repository provides a efficient and step by step guide to utilize Grafana Mimir to remote write your metrics data to Object Storage.
 This repository also helps  you to monitor your application performance, resource usage and health status with Prometheus & Grafana.
