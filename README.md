@@ -291,8 +291,9 @@ The diagram shows the following components:
 Now Navigate to the minio Server at port 9001 and which we setup earlier
 
 Now you can see some data inside your bucket that we created earlier.
-Navigate to demo directory inside your bucket you can see cache data of your metrics
+Navigate to demo directory inside your bucket you can see cache data of your metrics <br>
 <img src="./images/storage.png"/>
+<br>
 Each on-disk block directory contains an index file, a file containing metadata(meta.json), and the time series chunks.
 
 
