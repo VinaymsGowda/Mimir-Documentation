@@ -17,7 +17,7 @@ Login to your MongoDB Atlas Account and create a cluster. After creating a clust
 
 **Note:** Store this connection string in a notepad as we will use it to set up the database connection in our application.
 
-THe Connection String will look like this "mongodb+srv://'<username>':'<password>'@'<clusterName>'.i30sge8.mongodb.net"
+THe Connection String will look like this "mongodb+srv://'username':'password'@'clusterName'.i30sge8.mongodb.net"
 
 ## Setting Up Database Connection for the Books MicroService
 
