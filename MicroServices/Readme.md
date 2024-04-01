@@ -37,4 +37,6 @@ The mongo_url inside env file will be
 mongo_url=connection string/customerservice for Customer Service .env file
 mongo_url=connection string/orderservice   for  Order Service .env File
 
+Note: Replace the ip address inside orders.js file under orders directory with your actual ip address
+
 <p>You are all set Navigate back to root Directory of this repo and continue with the setup</p>

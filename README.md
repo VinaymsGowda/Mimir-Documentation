@@ -33,6 +33,14 @@ So basically Grafana Mimir helps us to store our Prometheus Data in an Object St
 <h2>First we will need a Object Storage for Mimir.</h2>
 <p>MinIO is a high-performance, S3 compatible object store</p>
 
+# Note: In order to get your Ip_address of your machine run the following command
+```bash
+ipconfig
+```
+
+The below steps are based on settting up Minio Server on windows OS system. If you have a different OS , 
+Follow the steps mentioned here for different OS [https://min.io/download]
+
 <bold>Steps to Setup Minio Server on your System</bold>
     
     Run Powershell as an administrator and run the following commands
@@ -61,14 +69,13 @@ Now that you have Minio Server running on Port 9001 , let's move forward to next
 
 In this Documentation i will be explaining on how to setup Mimir instances to write data to Minio Object Storage.
 
-<!-- Explain About Docker Compose file which will have  all the services needed -->
 
 1. Navigate to the MicroServices directory and follow the instructions given there to setup your Nodejs MicroService.
 2. Now that you have the Micro-Service Setup with appropriate details we will start with our docker compose file.
 
 3. We will be using the following images  from Docker Hub :
     # Grafana : grafana/grafana Running at Port 3000
-    Grafana is an open-source platform for monitoring and observability. It allows you to query, visualize, alert on, and understand your metrics no matter where they are stored. With Grafana, you can create, explore, and share dashboards with your team to foster a data-driven culture.
+    Grafana is an open-source platform for monitoring and observability. It allows you to query, visualize, alert on, and understand your metrics no matter where they are stored. With Grafana, you can create, explore, and build dashboards with your team to foster a data-driven culture.
 
 
     ### Features:
@@ -149,6 +156,10 @@ In this Documentation i will be explaining on how to setup Mimir instances to wr
 
 # Now Start the Docker Compose setup in docker-compose.yaml using the below Command
 
+```bash
+docker compose build
+```
+This command builds the image if not already built. If it's already built then it pulls from the registry. 
 ```bash
 docker-compose up -d
 ```
@@ -339,7 +350,7 @@ sum(rate(container_cpu_usage_seconds_total{name=~".*",name=~".+",image!=""}[5m])
 Similarly in Grafana you can also add 2 Queries and view them in a single  graph, which is called Stacked Graphs.
 Add the below  query to see network traffic in Cadvisor
 
-``bash
+```bash
 sum(rate(container_network_receive_bytes_total{id="/"}[5m])) by (id)
 ```
 Scroll down and Click on Add Query and add the below query
@@ -348,3 +359,6 @@ Scroll down and Click on Add Query and add the below query
 ```
 Later Click on Run queries you will see the  Network Traffic graph.
 
+
+This GitHub Repository provides a efficient and step by step guide to utilize Grafana Mimir to remote write your metrics data to Object Storage.
+This repository also helps  you to monitor your application performance, resource usage and health status with Prometheus & Grafana.
