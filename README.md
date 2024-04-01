@@ -153,7 +153,16 @@ In this Documentation i will be explaining on how to setup Mimir instances to wr
 docker-compose up -d
 ```
 
+This command starts:
 
+# Grafana Mimir
+### Three instances of monolithic-mode Mimir to provide high availability
+# Minio
+### S3-compatible persistent storage for blocks, rules, and alerts
+# Prometheus
+### Scrapes Grafana Mimir metrics, then writes them back to Grafana Mimir to ensure availability of ingested metrics
+# Load balancer
+### A simple NGINX-based load balancer that exposes Grafana Mimir endpoints on the host
 
 After Running the Above Command ,Open Command Prompt and Run the Below Command OR open docker Desktop and see multi-container stack running
 ```bash
@@ -213,7 +222,75 @@ This will show us cpu usage of our books-service container.
 
 - Then Choose Data source as prometheus from dropdown and Click Import.
 - After Doing this you will get inbuild node exporter dashboard which will complete information about your system metrics data with graphs and numbers.
-     klk
+
 # write about going to mimir admin at 9009 and tell that read and write requests are balanced 
-# tell about read path and write path
-# tell about ingestors
+
+# Grafana Mimir Admin
+
+Navigate to IP_Address:9009 where you can see Grafana Mimir Admin Interface 
+
+1. Current Config:
+Displays both the default values and any configurations that differ from the defaults.
+Provides insights into the current settings for various services.
+2. Compactor:
+Indicates the status of the ring, which is likely related to data processing or storage efficiency.
+Monitoring this can help optimize performance.
+3. Distributor:
+Shows usage statistics and HA (High Availability) tracker status.
+Provides insights into system performance and availability.
+4. Ingester:
+Displays the status of tenants and the ring.
+Offers information on data ingestion processes.
+5. Overrides-exporter:
+Provides information on the ring’s status.
+6. Ruler:
+Indicates the status of the ring.
+7. Store-gateway:
+Shows both tenants & blocks and ring statuses.
+8. Memberlist:
+Indicates cluster membership status.
+Used for coordinating services or tasks across distributed systems.
+9. Dangerous:
+- Options to trigger a flush of data from ingester to storage (emergency action).
+- Also allows triggering ingester shutdown (emergency scenario).
+Please note that the “Dangerous” options should be used with caution, as they can impact system behavior significantly. 🚨
+
+
+# The write path
+
+<img src="./images/write-path.svg"/>
+
+The diagram shows the following components:
+
+1. Writes: This component writes data to Mimir.
+2. Ingester: This component receives data from the distributor and prepares it for storage.
+3. Distributor: This component distributes the prepared data to multiple object storage instances.
+4. Compactor: This component compacts the data over time to save storage space.Blocks compaction significantly reduces storage utilization
+5. Object Storage: This component stores the metrics data. Mimir supports various object storage solutions.
+# Here are some additional details about the Mimir architecture:
+- Mimir uses a ring architecture to store and replicate data.
+- Mimir is designed to be performant and efficient. It can ingest and store large volumes of metrics data.
+
+
+# The read path
+<img src="./images/read-path.svg"/>
+
+1. Queries coming into Grafana Mimir arrive at the query-frontend. The query-frontend then splits queries over longer time ranges into multiple, smaller queries.
+2. The query-frontend next checks the results cache. If the result of a query has been cached, the query-frontend returns the cached results. Queries that cannot be answered from the results cache are put into an in-memory queue within the query-frontend.
+3. The queriers act as workers, pulling queries from the queue.
+
+Now Navigate to the minio Server at port 9001 and which we setup earlier
+
+Now you can see some data inside your bucket that we created earlier.
+Navigate to demo directory inside your bucket you can see cache data of your metrics
+<img src="./images/storage.png"/>
+Each on-disk block directory contains an index file, a file containing metadata(meta.json), and the time series chunks.
+
+
+# The role of Prometheus
+Prometheus instances scrape samples from various targets and push them to Grafana Mimir by using Prometheus’ remote write API.
+
+Incoming samples (writes from Prometheus) are handled by the distributor, and incoming reads (PromQL queries) are handled by the query frontend.
+
+Now that we know how Prometheus remote writes data to Object Storage.
+Lets build some Dashboards and Visualize the Data on Grafana 
