@@ -53,13 +53,13 @@ app.post('/order',(req,res)=>{
                 console.log(orders)
                 if(orders)
 
-                //console.log("http://192.168.137.1:5555/customer/"+orders.CustomerID);
+                //console.log("http://ip_address:5555/customer/"+orders.CustomerID);
 
-                axios.get("http://192.168.137.1:5555/customer/"+orders.CustomerID).then((resposne)=>{
+                axios.get("http://ip_address:5555/customer/"+orders.CustomerID).then((resposne)=>{
 
                 console.log("respsne from then",resposne.data);
 
-                axios.get("http://192.168.137.1:5555/customer/"+orders.CustomerID).then((resposne)=>{
+                axios.get("http://ip_address:5555/customer/"+orders.CustomerID).then((resposne)=>{
 
 
                 })

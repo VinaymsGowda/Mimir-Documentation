@@ -294,3 +294,57 @@ Incoming samples (writes from Prometheus) are handled by the distributor, and in
 
 Now that we know how Prometheus remote writes data to Object Storage.
 Lets build some Dashboards and Visualize the Data on Grafana 
+
+# Set-up Mimir as a Data-source in Grafana Running at Port 3000
+
+1. Navigate to Data Sources --> Add new Data Source --> Select Prometheus Data source
+2. Enter Name of Data Source as Mimir and provide prometheus server URL as http://IP_Address:9090
+3. Click save and test.
+4. On success you will get 
+- Successfully queried the Prometheus API.Next, you can start to visualize data by building a dashboard, or by querying data in the Explore view.
+
+# Creating Dashboards on Grafana
+## For book-services using Cadvisor
+1. Now navigate to Dashboard --> New Dashboard --> Add visualization
+2. Choose Data Source as Mimir
+3. Add the below Query
+```bash
+container_network_transmit_packets_total{name="books-services", job="cadvisor"}
+```
+This query gives us total number of packets sent by books-service container through its network interface.
+4. You should now see a graph with time series showing the number of packets sent overtime.Choose Visualization as Gauge to see data in number format.
+5. Add visualization and add the below query 
+```bash
+container_network_receive_packets_total{name="books-services", job="cadvisor"}
+```
+6. This query gives us total number of packets received by books-service container through its network interface.
+7. Similarly add below queries to get visualizations
+```bash
+container_memory_usage_bytes{name="books-services", job="cadvisor"} # To show memory usage of our book-service
+container_cpu_usage_seconds_total{job="cadvisor", name="books-services"} # CPU Usage of our book-service
+```
+
+Similarly you can create dashboards  for other services too. 
+
+# To view Cadvisor  Dashboard
+
+1. Run the following queries by creating new Dashboard for Cadvisor
+
+```bash
+count(container_last_seen{job=~"cadvisor",image!=""})  #This Query returns the number of running containers that are monitored by cadvisor
+sum(container_memory_usage_bytes{job="cadvisor",name=~".+",image!=""}) by(name) # Memory usage per Container You can see specific container stats by tapping on the container-name you want.
+sum(rate(container_cpu_usage_seconds_total{name=~".*",name=~".+",image!=""}[5m])) by (name) * 100 # This provides cpu usage information about individual containers running inside docker.
+```
+
+Similarly in Grafana you can also add 2 Queries and view them in a single  graph, which is called Stacked Graphs.
+Add the below  query to see network traffic in Cadvisor
+
+``bash
+sum(rate(container_network_receive_bytes_total{id="/"}[5m])) by (id)
+```
+Scroll down and Click on Add Query and add the below query
+```bash
+- sum(rate(container_network_transmit_bytes_total{id="/"}[5m])) by (id)
+```
+Later Click on Run queries you will see the  Network Traffic graph.
+

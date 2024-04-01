@@ -11,11 +11,11 @@ common:
   storage:
     backend: s3
     s3:
-      endpoint: 192.168.137.1:9000  # IP address of the server
-      access_key_id: LzT5tQqnnXrknpCEcxIP 
-      secret_access_key: o0py0kOBBYeK2ZB7dJ51c8wjMZudjNKlf6OuE4ne
+      endpoint: IP_Address:9000  # IP address of the server
+      access_key_id: accessKey from credentials.json
+      secret_access_key: secretKey from credentials.json
       insecure: true
-      bucket_name: bucket-1
+      bucket_name: bucket_name
       
 # Blocks storage requires a prefix when using a common object storage bucket.
 blocks_storage:

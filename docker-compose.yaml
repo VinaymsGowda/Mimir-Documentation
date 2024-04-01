@@ -41,7 +41,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      # - ./grafana/tmp:/var/lib/grafana
+      - ./grafana/tmp:/var/lib/grafana
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
     networks:
       - monitoring
