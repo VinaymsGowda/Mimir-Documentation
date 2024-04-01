@@ -159,9 +159,9 @@ In this Documentation i will be explaining on how to setup Mimir instances to wr
 ```bash
 docker compose build
 ```
-This command builds the image if not already built. If it's already built then it pulls from the registry. 
+The docker compose build command is used to build or rebuild services defined in a docker-compose.yml file. When you run this command, Docker reads the service definitions that include build instructions from your Compose file and executes the build process for each service
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 This command starts:
