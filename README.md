@@ -26,7 +26,7 @@ So basically Grafana Mimir helps us to store our Prometheus Data in an Object St
     <p>Mimir Instances are Responsible for doing read and write requests to the object Storage(In our Case we are using Minio for Object Storage)</p>
 </div>
 
-**Note:** We will be using docker to setup our service.Make sure you have Docker installed and running on your machine.
+# Note: We will be using docker to setup our service.Make sure you have Docker installed and running on your machine.
 
 <h1>What are the Pre Requisites to run Grafana Mimir?</h1>
 
@@ -73,80 +73,44 @@ In this Documentation i will be explaining on how to setup Mimir instances to wr
 1. Navigate to the MicroServices directory and follow the instructions given there to setup your Nodejs MicroService.
 2. Now that you have the Micro-Service Setup with appropriate details we will start with our docker compose file.
 
-3. We will be using the following images  from Docker Hub :
-    # Grafana : grafana/grafana Running at Port 3000
-    Grafana is an open-source platform for monitoring and observability. It allows you to query, visualize, alert on, and understand your metrics no matter where they are stored. With Grafana, you can create, explore, and build dashboards with your team to foster a data-driven culture.
+# We will be using the following images  from Docker Hub :
+## Grafana : grafana/grafana 
+Grafana is an open-source platform for monitoring and observability. It allows you to query, visualize, alert on, and understand your metrics no matter where they are stored. With Grafana, you can create, explore, and build dashboards with your team to foster a data-driven culture.
 
+## prometheus : prom/prometheus  Running at Port 9090
 
-    ### Features:
-   - **Visualizations**: Create dynamic and reusable dashboards with a wide range of visualization options.
-   - **Alerts**: Set up alerts to notify you of potential issues within your metrics.
-   - **Annotations**: Mark events on graphs to provide additional context.
-   - **Explore**: Drill down into your metrics for ad-hoc querying and analysis.
-   - **Scalability**: Designed to handle large amounts of data, making it suitable for small and large organizations alike.
+Prometheus collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts if certain conditions are observed.
 
-    Grafana supports a multitude of data sources, including Prometheus, Elasticsearch, and many more, making it a versatile tool for any data-driven team.
-
-    # prometheus : prom/prometheus  Running at Port 9090
-
-     Prometheus collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts if certain conditions are observed.
-
-    ### Features:
-    - **Multi-Dimensional Data Model**: Metrics are identified by a name and key/value pairs.
-    - **PromQL**: A powerful query language to leverage the dimensionality of data.
-    - **Pull Model**: Time series collection via an HTTP pull model.
-    - **Service Discovery**: Targets are discovered via service discovery or static configuration.
-
-    Prometheus is particularly well-suited for collecting time-series data in a microservices architecture.
+Prometheus is particularly well-suited for collecting time-series data in a microservices architecture.
    
-    # cadvisor : gcr.io/cadvisor/cadvisor:latest Running at Port 8081
+## cadvisor : gcr.io/cadvisor/cadvisor:latest Running at Port 8081
 
-    ## cAdvisor (Container Advisor)
+## cAdvisor (Container Advisor)
 
-    cAdvisor is an open-source tool that provides container users with insights into resource usage and performance characteristics of their running containers. It's a daemon that collects, aggregates, processes, and exports information about running containers, offering a detailed view of resource isolation parameters, historical resource usage, and network statistics.
+cAdvisor is an open-source tool that provides container users with insights into resource usage and performance characteristics of their running containers. It's a daemon that collects, aggregates, processes, and exports information about running containers, offering a detailed view of resource isolation parameters, historical resource usage, and network statistics.
 
-    ### Features:
-    - **Real-time Metrics**: Tracks CPU, memory, filesystem, and network usage statistics.
-    - **Container Efficiency**: Helps identify containers using excessive resources.
-    - **Prometheus Integration**: Exports data in Prometheus format for easy integration.
-    - **Comprehensive Visibility**: Provides a detailed look at the resource usage of containers.
+cAdvisor is designed to monitor the whole machine and is particularly useful in a microservices architecture where containerization is prevalent.
 
-    cAdvisor is designed to monitor the whole machine and is particularly useful in a microservices architecture where containerization is prevalent.
+## redis : redis:latest 
 
-    # redis : redis:latest 
+The `redis:latest` Docker image is the official Redis server image that provides an in-memory data structure store, used as a database, cache, and message broker. This image is commonly used in conjunction with monitoring tools like cAdvisor to store container metrics efficiently.
 
-    The `redis:latest` Docker image is the official Redis server image that provides an in-memory data structure store, used as a database, cache, and message broker. This image is commonly used in conjunction with monitoring tools like cAdvisor to store container metrics efficiently.
+## Node-exporter : prom/node-exporter:latest 
 
-    ### Features:
-    - **In-Memory Storage**: Offers high-performance data storage and retrieval.
-    - **Persistence**: Supports various persistence options for durability.
+The `prom/node-exporter:latest` Docker image provides the latest version of the Node Exporter, which is a powerful tool for monitoring system-level metrics on systems. It's designed to collect a wide variety of hardware- and OS-level metrics, making it an essential part of any Prometheus monitoring setup.
 
-    # Node-exporter : prom/node-exporter:latest Running at Port 9100
 
-    The `prom/node-exporter:latest` Docker image provides the latest version of the Node Exporter, which is a powerful tool for monitoring system-level metrics on systems. It's designed to collect a wide variety of hardware- and OS-level metrics, making it an essential part of any Prometheus monitoring setup.
+## mimir : grafana/mimir:latest
 
-    ### Features:
-    - **Comprehensive Metrics**: Collects detailed system metrics including CPU, memory, disk, and network utilization.
-    - **Prometheus Integration**: Seamlessly integrates with Prometheus for efficient monitoring and alerting.
+A Mimir instance refers to a single deployment of Grafana Mimir, which is designed for long-term storage and high-availability monitoring of Prometheus metrics. It's built to handle large-scale data and provides a robust solution for time-series data management.
 
-    # mimir : grafana/mimir:latest
+## MinIO : minio/minio 
 
-    A Mimir instance refers to a single deployment of Grafana Mimir, which is designed for long-term storage and high-availability monitoring of Prometheus metrics. It's built to handle large-scale data and provides a robust solution for time-series data management.
+MinIO is an open-source object storage service that provides high-performance, S3 compatible storage.
+Here in this Documentation we will be using Minio Object Storage to store Metrics Data.
 
-    ### Features:
-    - **Scalable**: Can process and store vast amounts of metrics efficiently.
-    - **Durable**: Utilizes object storage for reliable, long-term retention of data.
 
-    # MinIO : minio/minio Running at Port 9001
-
-    MinIO is an open-source object storage service that provides high-performance, S3 compatible storage.
-    Here in this Documentation we will be using Minio Object Storage to store Metrics Data.
-
-    ### Key Features:
-    - **High Performance**: Optimized for speed with a minimalistic design.
-    - **Scalability**: Can handle petabytes of data and millions of objects.
-    - **Security**: Provides robust security features, including encryption and access management.
-
+# Other setups
 
 1. Navigate to Prometheus directory and follow the instructions there.
 2. After Completing the setup of Prometheus 
@@ -188,7 +152,6 @@ You should see Cadvisor Home Page .
 
 - Navigate to docker containers and there you can see a list of sub-containers that cadvisor is monitoring
 - Cadvisor provides CPU Usage ,Memory Usage and other stats of the sub-containers.
-
 
 
 # Node-exporter 
