@@ -77,13 +77,13 @@ In this Documentation i will be explaining on how to setup Mimir instances to wr
 ## Grafana : grafana/grafana 
 Grafana is an open-source platform for monitoring and observability. It allows you to query, visualize, alert on, and understand your metrics no matter where they are stored. With Grafana, you can create, explore, and build dashboards with your team to foster a data-driven culture.
 
-## prometheus : prom/prometheus  Running at Port 9090
+## prometheus : prom/prometheus  
 
 Prometheus collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts if certain conditions are observed.
 
 Prometheus is particularly well-suited for collecting time-series data in a microservices architecture.
    
-## cadvisor : gcr.io/cadvisor/cadvisor:latest Running at Port 8081
+## cadvisor : gcr.io/cadvisor/cadvisor:latest 
 
 ## cAdvisor (Container Advisor)
 
