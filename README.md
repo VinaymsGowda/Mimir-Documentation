@@ -55,7 +55,7 @@ Follow the steps mentioned here for different OS [https://min.io/download]
 
 3. This command will set the password for above user 
     ```bash
-    setx MINIO_ROOT_USER password
+    setx MINIO_ROOT_PASSWORD password
     
 4. This Command will start the minio Server
     ```bash
